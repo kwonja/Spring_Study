@@ -6,7 +6,7 @@ import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository{
 
-    private static Map<Long, Member> store = new HashMap<>(); //저장소가 없기때문에 따로 저장하기위해서 사용 //동시성 문제가 발생할수도
+    private  static Map<Long, Member> store = new HashMap<>(); //저장소가 없기때문에 따로 저장하기위해서 사용 //동시성 문제가 발생할수도
     private static long sequence = 0L;
 
     @Override

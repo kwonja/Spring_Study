@@ -9,7 +9,11 @@ import java.util.Optional;
 
 public class MemberSerivce {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    MemberSerivce(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     public Long join (Member member)
     {
@@ -23,6 +27,7 @@ public class MemberSerivce {
                     throw new IllegalStateException("이미 존재하는 회원입니다."); //optional이 ifpresent같은 메소드를 제공해줌
                 });
     }
+    //전체회원 조회
     public List<Member> findMember()
     {
         return memberRepository.findAll();
