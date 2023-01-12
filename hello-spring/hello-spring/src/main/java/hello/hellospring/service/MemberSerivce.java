@@ -1,17 +1,19 @@
 package hello.hellospring.service;
 
-import hello.hellospring.domain.Member;
+import hello.hellospring.repository.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+//@Service //서비스라고 해줘야 스프링에서 가져올수 있음
 public class MemberSerivce {
 
     private final MemberRepository memberRepository;
 
-    MemberSerivce(MemberRepository memberRepository) {
+    public MemberSerivce(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 

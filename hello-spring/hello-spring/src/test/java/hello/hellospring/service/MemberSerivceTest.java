@@ -1,12 +1,13 @@
 package hello.hellospring.service;
 
-import hello.hellospring.domain.Member;
-import hello.hellospring.repository.MemberRepository;
+import hello.hellospring.repository.domain.Member;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,7 +56,7 @@ class MemberSerivceTest {
 //            memberService.join(member2);
 //        }catch (IllegalStateException e)
 //        {
-//            Assertions.assertEquals(e.getMessage(),"이1미 존재하는 회원입니다.");
+//            Assertions.assertEquals(e.getMessage(),"이미 존재하는 회원입니다.");
 //        }
 
 
@@ -66,11 +67,39 @@ class MemberSerivceTest {
 
     }
 
+    //서비스를 사용하기위해 회원가입한 모든 멤버 찾기 테스트
     @Test
     void findMember() {
+        Member member1 = new Member();
+        member1.setName("spring");
+
+        Member member2 = new Member();
+        member2.setName("hello");
+
+        memberService.join(member1);
+        memberService.join(member2);
+
+        List<Member> result = memberService.findMember();
+        for(Member member : result)
+        {
+            System.out.println(member.getName());
+        }
+        System.out.println(result.toString());
+
     }
 
+    //서비스를 이용하는 회원중에서
     @Test
     void findOne() {
+        Member member1 = new Member();
+        member1.setName("spring");
+
+        Member member2 = new Member();
+        member1.setName("hello");
+
+        memberService.join(member1);
+        Member result = memberService.findOne(member1.getId()).get();
+
+        Assertions.assertEquals(result,member2);
     }
 }
