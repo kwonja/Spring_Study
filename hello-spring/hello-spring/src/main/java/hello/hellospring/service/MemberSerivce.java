@@ -1,14 +1,14 @@
 package hello.hellospring.service;
 
-import hello.hellospring.repository.domain.Member;
+import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 //@Service //서비스라고 해줘야 스프링에서 가져올수 있음
+@Transactional //서비스가 데이터에 잘 들어갔는지를 확인해주는 방법인듯? 테스트가 아닌 스프링부트에서의 transactional 일때
 public class MemberSerivce {
 
     private final MemberRepository memberRepository;
@@ -17,11 +17,18 @@ public class MemberSerivce {
         this.memberRepository = memberRepository;
     }
 
+    long start = System.currentTimeMillis();
     public Long join (Member member)
     {
-        validateDuplicateMember(member); //중복회원검사
-        memberRepository.save(member);
-        return member.getId(); //몇번째 회원인지
+        try {
+            validateDuplicateMember(member); //중복회원검사
+            memberRepository.save(member);
+            return member.getId(); //몇번째 회원인지
+        }finally {
+            long finish=System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("timeMs = "+timeMs);
+        }
     }
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())
