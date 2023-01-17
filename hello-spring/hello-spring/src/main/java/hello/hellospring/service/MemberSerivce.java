@@ -20,15 +20,9 @@ public class MemberSerivce {
     long start = System.currentTimeMillis();
     public Long join (Member member)
     {
-        try {
             validateDuplicateMember(member); //중복회원검사
             memberRepository.save(member);
             return member.getId(); //몇번째 회원인지
-        }finally {
-            long finish=System.currentTimeMillis();
-            long timeMs = finish - start;
-            System.out.println("timeMs = "+timeMs);
-        }
     }
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())

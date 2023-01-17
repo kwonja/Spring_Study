@@ -22,10 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MemberSerivceIntegrationTest {
 
-
     //테스트를 진행할때는 DI를 신경쓸필요가 없기때문에 필드형태로 진행해도 나쁘지않다.
-
-    @Autowired MemberSerivce memberService;
+    @Autowired MemberSerivce memberService; //구현체는 @Configuration에 정의한곳에서 자동으로 올라온다.
     @Autowired MemberRepository memberRepository;
 
 
