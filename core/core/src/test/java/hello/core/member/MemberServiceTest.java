@@ -11,11 +11,6 @@ import org.junit.jupiter.api.Test;
 public class MemberServiceTest {
 
     private MemberService memberService;
-    @BeforeEach
-    public  void beforeEach()
-    {
-        memberService = new MemberServiceimpl();
-    }
     @Test
     public void 회원가입()
     {
