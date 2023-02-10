@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="'안녕!!' + ${data}" >안녕하세요. 손님</p>
+</body>
+</html>
+<!--SpringBoot에서 코드를 수정하면 새로고침을 해야되는데,
+implementation 'org.springframework.boot:spring-boot-devtools' //리로딩을 가능하게 해준다.
+위 코드를 넣고
+build에 리컴파일을 해주게 되면 재실행 없이 바뀌는 화면을 볼 수 있다.
+-->

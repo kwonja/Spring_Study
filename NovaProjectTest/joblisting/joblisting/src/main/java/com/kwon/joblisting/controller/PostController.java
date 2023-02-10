@@ -1,5 +1,7 @@
 package com.kwon.joblisting.controller;
 
+import com.kwon.joblisting.model.Comment;
+import com.kwon.joblisting.repository.CommentsRepository;
 import com.kwon.joblisting.repository.PostRepository;
 import com.kwon.joblisting.model.Post;
 import com.kwon.joblisting.repository.SearchRepository;
@@ -16,6 +18,9 @@ public class PostController {
     PostRepository repo;
     @Autowired
     SearchRepository srepo;
+
+    @Autowired
+    CommentsRepository commentsRepository;
 
     @GetMapping("/posts")
     public List<Post> getAllPost()
@@ -39,4 +44,9 @@ public class PostController {
         return srepo.findByText(text);
     }
 
+    @PostMapping("/comment")
+    public Comment addComment(@RequestBody Comment comment)
+    {
+        return commentsRepository.save(comment);
+    }
 }

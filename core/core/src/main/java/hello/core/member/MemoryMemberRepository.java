@@ -1,8 +1,10 @@
 package hello.core.member;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
-
+@Component
 public class MemoryMemberRepository implements MemberRepository{
     private  Long sequence=0L;
     private static Map<Long,Member> store= new HashMap<>(); //동시성 이슈가 있을수 있지만 테스트용이라서 괜찮다.
