@@ -29,6 +29,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2' //데이터 베이스 연결
 	annotationProcessor 'org.projectlombok:lombok'  //중복을 줄여줌
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
 }
 
 tasks.named('test') {
